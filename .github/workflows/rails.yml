@@ -61,4 +61,6 @@ jobs:
         sudo /etc/init.d/mysql start
         bin/rails db:create
         bin/rails db:migrate
+    - name: Run Rubocop
+      run: bundle exec rubocop
 
