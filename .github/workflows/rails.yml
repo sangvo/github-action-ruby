@@ -17,6 +17,7 @@ jobs:
           MYSQL_ROOT_PASSWORD: root
         ports:
           - 3306
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
 
     steps:
     - uses: actions/checkout@v1
@@ -56,6 +57,8 @@ jobs:
         DB_PASSWORD: root
         DB_PORT: ${{ job.services.mysql.ports[3306] }}
       run: |
+        cp .env.sample .env
+        sudo /etc/init.d/mysql start
         bin/rails db:create
         bin/rails db:migrate
 
