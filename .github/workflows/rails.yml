@@ -69,3 +69,11 @@ jobs:
     - name: Run Brakeman
       run: bundle exec brakeman
 
+    - name: Run Rspec
+      env:
+        RAILS_ENV: test
+        DB_PASSWORD: root
+        DB_PORT: ${{ job.services.mysql.ports[3306] }}
+      run: |
+        bundle exec rspec
+
