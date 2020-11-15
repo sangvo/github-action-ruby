@@ -25,6 +25,7 @@ jobs:
       uses: ruby/setup-ruby@v1
       with:
         ruby-version: 2.6.3
+        bundler-cache: true
     
     - uses: actions/cache@v1
       with:
@@ -59,8 +60,9 @@ jobs:
       run: |
         cp .env.sample .env
         sudo /etc/init.d/mysql start
-        bin/rails db:create
-        bin/rails db:migrate
+        bundle exec rails db:create
+        bundle exec rails db:schema:load
+
     - name: Run Rubocop
       run: bundle exec rubocop
 
