@@ -2,6 +2,6 @@
 
 class ApplicationController < ActionController::Base
   def home
-    render json: { message: 'ok' }, status: :ok
+    render json: { message: 'success' }, status: :ok
   end
 end
